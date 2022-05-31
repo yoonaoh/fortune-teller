@@ -4,8 +4,8 @@ Simple Terminal Fortune Teller Game
 """
 
 colors = ['red', 'blue', 'yellow', 'green']
-group_1_nums = [1, 2, 5, 6]
-group_2_nums = [3, 4, 7, 8]
+numbers_1 = [1, 2, 5, 6]
+numbers_2 = [3, 4, 7, 8]
 fortunes = [
     "you're going to get a message from an old friend",
     "something will happen that will inspire you to take action",
@@ -16,6 +16,7 @@ fortunes = [
     "you will get a well-deserved break soon",
     "you will go on an adventure today"
 ]
+end_games = ['y', 'n']
 counter = 0
 
 
@@ -33,7 +34,7 @@ def validate_input(choice, options):
     if choice not in options:
         first_options = ', '.join(map(lambda x: str(x), options[:len(options) - 1]))
         last_option = str(options[len(options) - 1])
-        print(str(choice)+" is not a valid selection. Please enter either "+first_options+", or "+last_option+".")
+        print(str(choice) + " is not a valid selection. Please enter either " + first_options + ", or " + last_option + ".")
         return False
     else:
         return True
@@ -59,7 +60,7 @@ def pick_number():
         print("Pick a number: [1, 2, 5, 6]")
         while not valid_number:
             number_choice = input("Enter number: ")
-            valid_number = number_choice.isdigit() and validate_input(int(number_choice), group_1_nums)
+            valid_number = number_choice.isdigit() and validate_input(int(number_choice), numbers_1)
             if valid_number:
                 number = int(number_choice)
                 fold_number(number)
@@ -69,7 +70,7 @@ def pick_number():
         print("Pick a number: [3, 4, 7, 8]")
         while not valid_number:
             number_choice = input("Enter number: ")
-            valid_number = number_choice.isdigit() and validate_input(int(number_choice), group_2_nums)
+            valid_number = number_choice.isdigit() and validate_input(int(number_choice), numbers_2)
             if valid_number:
                 number = int(number_choice)
                 fold_number(number)
@@ -86,12 +87,11 @@ def end_game():
     print("Do you want to play again? Type y for yes and n for no")
     while not valid_end_game:
         end_game_choice = input("Enter y or n: ")
-        valid_end_game = validate_input(end_game_choice, ['y', 'n'])
+        valid_end_game = validate_input(end_game_choice, end_games)
         if valid_end_game and end_game_choice == 'n':
             return True
 
-
-# Press the green button in the gutter to run the script.
+        
 if __name__ == '__main__':
     while True:
         counter = 0
